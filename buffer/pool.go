@@ -180,18 +180,21 @@ func (b *Buffer) Size() int {
 
 // DumpTo outputs the contents of a buffer to a writer and resets the buffer.
 func (b *Buffer) DumpTo(w io.Writer) (written int, err error) {
-	bufs := net.Buffers(b.bufs)
+	oldbufs := b.bufs
+	bufs := append(oldbufs, oldbufs...)
 	if len(b.Buf) > 0 {
 		bufs = append(bufs, b.Buf)
 	}
-	n, err := bufs.WriteTo(w)
+	b.bufs = bufs[len(oldbufs):]
+	netbufs := (*net.Buffers)(&b.bufs)
+	n, err := netbufs.WriteTo(w)
 
-	for _, buf := range b.bufs {
+	for _, buf := range oldbufs {
 		putBuf(buf)
 	}
 	putBuf(b.toPool)
 
-	b.bufs = b.bufs[:0]
+	b.bufs = bufs[:0]
 	b.Buf = nil
 	b.toPool = nil
 
