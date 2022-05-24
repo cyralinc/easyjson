@@ -1,8 +1,8 @@
 package tests
 
 import (
-	"github.com/mailru/easyjson"
-	"github.com/mailru/easyjson/jwriter"
+	"github.com/cyralinc/easyjson"
+	"github.com/cyralinc/easyjson/jwriter"
 )
 
 //easyjson:json
