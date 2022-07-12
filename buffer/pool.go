@@ -68,8 +68,7 @@ func getBuf(size int) []byte {
 				// Get back the array and add length and capability.
 				// Limiting the array to the proper capability will make this
 				// safe.
-				buf := (*[maxArraySize]byte)(v.(unsafe.Pointer))
-				return buf[:0:size]
+				return (*[maxArraySize]byte)(v.(unsafe.Pointer))[:0:size]
 			}
 		}
 	}
