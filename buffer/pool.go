@@ -52,11 +52,11 @@ func putBuf(buf []byte) {
 		// avoid an extra allocation.
 		// We don't care about the length and we know the capability so
 		// we don't need to save anything else.
-		c.Put(unsafe.Pointer(&buf[:1][0]))
+		c.Put(unsafe.Pointer(&buf[:1][0])) // #nosec G103
 	}
 }
 
-const maxArraySize = uint((uint64(1) << 50 - 1) & uint64(^uint(0) >> 1))
+const maxArraySize = uint((uint64(1)<<50 - 1) & uint64(^uint(0)>>1))
 
 // getBuf gets a chunk from reuse pool or creates a new one if reuse failed.
 func getBuf(size int) []byte {

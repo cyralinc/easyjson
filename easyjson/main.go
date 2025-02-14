@@ -112,7 +112,7 @@ func main() {
 
 	for _, fname := range files {
 		if err := generate(fname); err != nil {
-			fmt.Fprintln(os.Stderr, err)
+			_, _ = fmt.Fprintln(os.Stderr, err)
 			os.Exit(1)
 		}
 	}

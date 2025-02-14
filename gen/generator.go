@@ -75,7 +75,7 @@ func NewGenerator(filename string) *Generator {
 	// Use a file-unique prefix on all auxiliary funcs to avoid
 	// name clashes.
 	hash := fnv.New32()
-	hash.Write([]byte(filename))
+	_, _ = hash.Write([]byte(filename))
 	ret.hashString = fmt.Sprintf("%x", hash.Sum32())
 
 	return ret

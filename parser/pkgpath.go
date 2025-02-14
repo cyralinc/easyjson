@@ -111,7 +111,7 @@ func getModulePath(goModPath string) string {
 		pkgPathFromGoModCache.Unlock()
 	}()
 
-	data, err := ioutil.ReadFile(goModPath)
+	data, err := ioutil.ReadFile(goModPath) // #nosec G304 -- Not a user input, used in auto code generation.
 	if err != nil {
 		return ""
 	}

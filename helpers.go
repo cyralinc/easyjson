@@ -44,7 +44,7 @@ type UnknownsMarshaler interface {
 }
 
 func isNilInterface(i interface{}) bool {
-	return (*[2]uintptr)(unsafe.Pointer(&i))[1] == 0
+	return (*[2]uintptr)(unsafe.Pointer(&i))[1] == 0 // #nosec G103
 }
 
 // Marshal returns data as a single byte slice. Method is suboptimal as the data is likely to be copied
