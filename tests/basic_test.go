@@ -222,7 +222,7 @@ func TestNestedEasyJsonMarshal(t *testing.T) {
 		Slice: []interface{}{n["Slice1"], n["Slice2"]},
 		Map:   map[string]interface{}{"1": n["Map1"], "2": n["Map2"]},
 	}
-	easyjson.Marshal(ni)
+	_, _ = easyjson.Marshal(ni)
 
 	for k, v := range n {
 		if !v.EasilyMarshaled {
@@ -244,7 +244,7 @@ func TestNestedMarshaler(t *testing.T) {
 		t.Errorf("Can't marshal NestedMarshaler: %s", err)
 	}
 
-	s2 := NestedMarshaler {
+	s2 := NestedMarshaler{
 		Value: &StructWithMarshaler{},
 	}
 

@@ -94,7 +94,7 @@ func TestReadCloser(t *testing.T) {
 	if err != nil {
 		t.Errorf("ReadCloser() error: %v", err)
 	}
-	rc.Close() // Will always return nil
+	_ = rc.Close() // Will always return nil
 
 	got := out.Bytes()
 	if !bytes.Equal(got, want) {
