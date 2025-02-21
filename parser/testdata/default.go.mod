@@ -1,3 +1,3 @@
 module example.com/user/project
 
-go 1.13
+go 1.23

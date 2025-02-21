@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        go: [ 1.17, 1.16, 1.15 ]
+        go: [ 1.23 ]
     steps:
       - uses: actions/checkout@v2
 
@@ -21,10 +21,6 @@ jobs:
         uses: actions/setup-go@v2
         with:
           go-version: ${{ matrix.go }}
-
-      - name: Install golint (for old go version)
-        if: matrix.go < 1.16
-        run: go get golang.org/x/lint/golint && go mod tidy
 
       - name: Install golint
         if: matrix.go > 1.15
